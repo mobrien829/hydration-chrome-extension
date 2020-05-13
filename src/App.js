@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import DrinkTable from "./Table";
+import { UserAgent } from "@quentin-sommer/react-useragent";
 
 function App() {
   const [counter, setCounter] = useState(0);
@@ -71,18 +72,20 @@ function App() {
             >
               Github repo
             </a>
-            <button
-              appearance="subtle"
-              onClick={() => {
-                chrome.tabs.getCurrent((tab) => {
-                  chrome.tabs.update(tab.id, {
-                    url: "chrome-search://local-ntp/local-ntp.html",
+            <UserAgent chrome>
+              <button
+                appearance="subtle"
+                onClick={() => {
+                  chrome.tabs.getCurrent((tab) => {
+                    chrome.tabs.update(tab.id, {
+                      url: "chrome-search://local-ntp/local-ntp.html",
+                    });
                   });
-                });
-              }}
-            >
-              Return to Chrome top pages
-            </button>
+                }}
+              >
+                Return to Chrome top pages
+              </button>
+            </UserAgent>
           </div>
         </div>
         <div className="time-list">

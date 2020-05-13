@@ -3,10 +3,13 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import { UserAgentProvider } from "@quentin-sommer/react-useragent";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <UserAgentProvider ua={window.navigator.userAgent}>
+      <App />
+    </UserAgentProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
